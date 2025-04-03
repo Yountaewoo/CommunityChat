@@ -1,10 +1,10 @@
 package CommunityChat.comment;
 
+import CommunityChat.comment.dto.CommentListResponse;
 import CommunityChat.comment.dto.CommentRequest;
 import CommunityChat.comment.dto.CommentResponse;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Getter;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CommentRestController {
@@ -18,5 +18,10 @@ public class CommentRestController {
     @PostMapping("/comments")
     public CommentResponse create(@RequestBody CommentRequest request) {
         return commentService.create(request);
+    }
+
+    @GetMapping("/comments/{postId}")
+    public CommentListResponse findByPostId(@PathVariable Long postId) {
+        return commentService.findByPostId(postId);
     }
 }

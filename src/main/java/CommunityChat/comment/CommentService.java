@@ -1,11 +1,13 @@
 package CommunityChat.comment;
 
+import CommunityChat.comment.dto.CommentListResponse;
 import CommunityChat.comment.dto.CommentRequest;
 import CommunityChat.comment.dto.CommentResponse;
 import CommunityChat.post.Post;
 import CommunityChat.post.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -27,4 +29,12 @@ public class CommentService {
         return new CommentResponse(comment.getContent(), comment.getId());
     }
 
+    public CommentListResponse findByPostId(Long postId) {
+        List<Comment> comments = commentRepository.findByPostId(postId);
+        return new CommentListResponse(
+                comments
+                        .stream()
+                        .map(comment -> new CommentResponse(comment.getContent(), comment.getId()))
+                        .toList());
+    }
 }
