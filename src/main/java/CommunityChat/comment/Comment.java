@@ -26,4 +26,8 @@ public class Comment {
         this.content = content;
         this.post = post;
     }
+
+    public void update(String content) {
+        this.content = content;
+    }
 }

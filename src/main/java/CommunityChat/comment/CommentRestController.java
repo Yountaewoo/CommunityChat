@@ -3,6 +3,7 @@ package CommunityChat.comment;
 import CommunityChat.comment.dto.CommentListResponse;
 import CommunityChat.comment.dto.CommentRequest;
 import CommunityChat.comment.dto.CommentResponse;
+import CommunityChat.comment.dto.CommentUpdateRequest;
 import lombok.Getter;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,5 +24,10 @@ public class CommentRestController {
     @GetMapping("/comments/{postId}")
     public CommentListResponse findByPostId(@PathVariable Long postId) {
         return commentService.findByPostId(postId);
+    }
+
+    @PostMapping("/comments")
+    public CommentResponse update(@RequestBody CommentUpdateRequest request) {
+        return commentService.update(request);
     }
 }

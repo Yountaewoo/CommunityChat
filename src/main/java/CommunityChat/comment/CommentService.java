@@ -3,8 +3,10 @@ package CommunityChat.comment;
 import CommunityChat.comment.dto.CommentListResponse;
 import CommunityChat.comment.dto.CommentRequest;
 import CommunityChat.comment.dto.CommentResponse;
+import CommunityChat.comment.dto.CommentUpdateRequest;
 import CommunityChat.post.Post;
 import CommunityChat.post.PostRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +38,13 @@ public class CommentService {
                         .stream()
                         .map(comment -> new CommentResponse(comment.getContent(), comment.getId()))
                         .toList());
+    }
+
+    @Transactional
+    public CommentResponse update(CommentUpdateRequest request) {
+        Comment comment = commentRepository.findById(request.commentId()).orElseThrow(
+                () -> new NoSuchElementException("해당하는 댓글이 없습니다."));
+        comment.update(request.content());
+        return new CommentResponse(comment.getContent(), comment.getId());
     }
 }
