@@ -30,4 +30,9 @@ public class CommentRestController {
     public CommentResponse update(@RequestBody CommentUpdateRequest request) {
         return commentService.update(request);
     }
+
+    @DeleteMapping("/comments/{commentId}")
+    public void delete(Long commentId) {
+        commentService.delete(commentId);
+    }
 }
