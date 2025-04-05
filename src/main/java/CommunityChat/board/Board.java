@@ -20,4 +20,20 @@ public class Board {
     public Board(String title) {
         this.title = title;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void updateTitle(String title){
+        this.title = title;
+    }
 }
