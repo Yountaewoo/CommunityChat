@@ -1,10 +1,7 @@
 package CommunityChat.post;
 
 import CommunityChat.board.Board;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Post {
@@ -17,6 +14,7 @@ public class Post {
 
     private String content;
 
+    @ManyToOne
     private Board board;
 
     protected Post() {
@@ -26,5 +24,39 @@ public class Post {
         this.title = title;
         this.content = content;
         this.board = board;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public void updatePost(String title,
+                           String content){
+        this.title = title;
+        this.content= content;
     }
 }
