@@ -23,7 +23,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 
 
-    //클라이언트가 연결할 엔드포인트 등록
+    //클라이언트가 연결할 엔드포인트 등록 - 웹소켓이 핸드쉐이크 하기 위해 연결
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")  //SocJS 연결 주소

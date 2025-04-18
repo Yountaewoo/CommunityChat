@@ -10,8 +10,7 @@ import org.springframework.web.util.HtmlUtils;
 public class GreetingController {
 
     //sendto 1:n으로 메세지 보낼때
-    //SendToUser 1:1로 베세지 보낼때 사용, 경로 /queue 시작
-
+    //SendToUser 1:1로 메세지 보낼때 사용, 경로 /queue 시작
     @MessageMapping("/chat")
     @SendTo("/topic/message")
     public ChatMessage handleMessage(ChatMessage chatMessage) {
